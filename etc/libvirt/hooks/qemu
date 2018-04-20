@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [[ $1 == "rwin10" ]] && [[ $2 == "start" ]] || [[ $2 == "stopped" ]]
+then
+  do_action="umount"
+  if [[ $2 == "stopped" ]]
+  then
+    do_action="mount"
+  fi
+
+  set -o pipefail
+  . "/usr/local/sbin/rvirtesp.sh" $do_action
+fi
