@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=ESP mount-unmount
+Comment=Custom script to mount or unmount the ESP (EFI System Partition)
+Exec=rvirtesp
+Icon=csd-automount
+Terminal=true
+Type=Application
+Name[en_US]=ESP mount-unmount
