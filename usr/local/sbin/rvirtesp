@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+is_mounted=false
+
+if mount | grep -qs sda1
+then
+  echo -e "sda1 is mounted.\n"
+  echo "Type <u> to unmount; Enter to quit. "
+  is_mounted=true
+
+else
+  echo -e "sda1 is not mounted.\n"
+  echo -e "It is safe to turn on the Virtual Machine.\n"
+  echo "Type <m> to mount; Enter to quit. "
+fi
+
+read choice
+
+if [[ $choice == "u" ]] && [[ "$is_mounted" == true ]]
+then
+  if sudo umount /dev/disk/by-id/ata-KINGSTON_SV300S37A120G_50026B7259015AFE-part1
+  then
+    echo -e "\n"
+    echo "ESP unmounted."
+    sleep 0.4
+  fi
+
+elif [[ $choice == "m" ]] && [[ "$is_mounted" == false ]]
+then
+  if sudo mount /dev/disk/by-id/ata-KINGSTON_SV300S37A120G_50026B7259015AFE-part1
+  then
+    echo -e "\n"
+    echo "ESP mounted."
+    sleep 0.4
+  fi
+
+fi
+
